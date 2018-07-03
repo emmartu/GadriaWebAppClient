@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+ 	http://www.springframework.org/schema/data/mongo
+  http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd	
+	http://www.springframework.org/schema/util
+  http://www.springframework.org/schema/util/spring-util-3.0.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task-3.0.xsd
+  http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
+	default-lazy-init="false">
+		
+	<!-- Application configuration -->
+	<context:property-placeholder
+		properties-ref="defaultValues" />
+	<bean id="defaultValues"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="properties">
+			<props>
+			</props>
+		</property>
+	</bean>
+
+	<!-- MVC Controllers -->
+	<context:component-scan base-package="it.mountaineering.gadria.client.mvc.controller" />
+	<mvc:annotation-driven />	
+	
+	<!-- Init application -->
+	<bean id="initApp" class="it.mountaineering.gadria.client.context.AppContextListener" />
+
+	<!-- Servlet getServletContext().getAttribute Config -->
+	<bean
+		class="org.springframework.web.context.support.ServletContextAttributeExporter">
+		<property name="attributes">
+			<map>
+				 <entry key="testSequenceMap" value-ref="testSequenceMap" />
+			</map>
+		</property>
+	</bean>
+	
+	<util:map id="testSequenceMap" key-type="java.lang.String" value-type="java.lang.String">
+		<entry key="test1" value="test1.properties" />
+		<entry key="test2" value="test2.properties" />
+		<entry key="test3" value="test3.properties" />
+		<entry key="test4" value="test4.properties" />
+		<entry key="test5" value="test5.properties" />
+		<entry key="test6" value="test6.properties" />
+		<entry key="test7" value="test7.properties" />
+		<entry key="test8" value="test8.properties" />
+		<entry key="test9" value="test9.properties" />
+	</util:map>
+	
+</beans>

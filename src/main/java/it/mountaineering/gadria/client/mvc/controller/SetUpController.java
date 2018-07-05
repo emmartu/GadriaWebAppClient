@@ -1,23 +1,17 @@
 package it.mountaineering.gadria.client.mvc.controller;
 
-import it.mountaineering.gadria.client.context.AppContextListener;
-import it.mountaineering.gadria.client.mvc.model.DemoSettings;
-import it.mountaineering.gadria.client.mvc.model.UserChoice;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+import it.mountaineering.gadria.client.mvc.model.DemoSettings;
+import it.mountaineering.gadria.client.mvc.model.UserChoice;
 
 @Controller
 public class SetUpController {

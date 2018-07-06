@@ -1,237 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>GadriaWebappClient</display-name>
+  
   <welcome-file-list>
-    <welcome-file>demoSettingsPage.html</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  <context-param>
-    <param-name>webAppRootKey</param-name>
-    <param-value>smart.monitoring.console.root</param-value>
-  </context-param>
+
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
     <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    
     <init-param>
       <param-name>encoding</param-name>
       <param-value>UTF-8</param-value>
     </init-param>
+    
     <init-param>
       <param-name>forceEncoding</param-name>
       <param-value>true</param-value>
     </init-param>
+    
   </filter>
+  
   <filter-mapping>
     <filter-name>characterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
   </filter-mapping>
-  <servlet>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/spring/applicationContext.xml</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showsevents</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/eventsearch</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/processessearch</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showrelatedprocess</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showprocesses</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showsaggregation</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showChartsPanel</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showsChart</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/showsconsole</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/atlanteconsole</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadAtlanteData</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/pauseAtlanteDataLoad</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/restartAtlanteDataLoad</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadReport</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadAtlanteDataForm</url-pattern>
-  </servlet-mapping>
-
-<!-- new bootstrap pages -->
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/resetallenvironment</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/startEngine</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/resetEnvironmentPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/resetTripleStore</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/getTripleStore</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/stopPipeline</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadRdfTestFileData</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/resetMongoDb</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadMongoDbTestData</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadRuleFile</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/developerSetupPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/demoSettings</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/demoSettingsPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/demoSetupPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/userChoice</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/demoHome</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/globalSetUp</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/globalLoadTestData</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/loadTestData</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/resetAtlanteReport</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/ruleInputFileForm</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/rdfDataInputFileForm</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/testPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/itViewsPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>/bpViewsPage</url-pattern>
-  </servlet-mapping>
-
-  <servlet-mapping>
-    <servlet-name>SpringAppDispatcher</servlet-name>
-    <url-pattern>*.do</url-pattern>
-  </servlet-mapping>
   
+	<servlet>
+  		<servlet-name>mvc-dispatcher</servlet-name>
+        <servlet-class>
+             org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+  	</servlet>
+
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+
+  <context-param>
+	<param-name>currentImageDir</param-name>
+	<param-value>/WEB-INF/img/latest_picture</param-value>
+  </context-param>
+
+  <context-param> 
+	<param-name>gadriaMonitoringUrl</param-name> 
+	<param-value>localhost:8001</param-value> 
+  </context-param> 
+
+  <listener>
+	<listener-class>it.mountaineering.gadria.client.main.GadriaWebAppClientMain</listener-class>
+  </listener>
+
   <session-config> 
     <session-timeout>-1</session-timeout>
   </session-config>

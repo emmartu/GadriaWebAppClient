@@ -15,6 +15,14 @@
 	<dependencies>
 
 		<dependency>
+			<groupId>it.mountaineering.gadria</groupId>
+			<artifactId>GadriaMonitoring</artifactId>
+			<version>2.0</version>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/GadriaMonitoring.jar</systemPath>
+		</dependency>
+
+		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>3.8.1</version>

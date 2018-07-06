@@ -22,15 +22,20 @@ public class AppContextListener implements ApplicationListener<ApplicationEvent>
 		this.applicationContext = context;
 	}
 
-	@Override
+    //@Override
+    //public void onStartup(ServletContext servletContext)   throws ServletException {
+    //    //...
+    //}
+
+    
+    @Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		if(event instanceof ContextRefreshedEvent) {
 			if(!started) {
 				started = true;
 				log.info("onApplicationEvent: started");
-
+				//applicationContext.get
 				//ClassPathFileResourceLocator.getInstance(applicationContext);
-
 			}
 		} else if (event instanceof ContextClosedEvent){
 

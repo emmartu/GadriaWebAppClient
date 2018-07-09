@@ -11,9 +11,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -21,14 +19,14 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
 import it.mountaineering.gadria.client.property.ApplicationProperties;
-import it.mountaineering.gadria.ring.memory.bean.WebcamProperty;
 
 public class NetClient {
 
 	private static final String _PROTOCOL = "http://";
 	private static final String _HOST = ApplicationProperties.getGadriaMonitoringUrl();// "localhost:8001";
 	private static final String _REST_URL = _PROTOCOL + _HOST + "/GadriaMonitoring";
-	private static final String _REST_ENABLED_WEBCAMS_URL = _REST_URL + "/enabled/webcams";
+	//private static final String _REST_ENABLED_WEBCAMS_URL = _REST_URL + "/enabled/webcams";
+	private static final String _REST_ENABLED_WEBCAMS_ID_URL = _REST_URL + "/webcamIdList";	
 	private static final String _REST_LATEST_IMAGE_URL = _REST_URL + "/latest-image/";
 	private static final String _REST_WEBCAMID_LIST_URL = _REST_URL + "/webcamIdList";
 	private static final String _REST_PICTURE_INTERVAL_URL = _REST_URL + "/pictureInterval";
@@ -98,25 +96,25 @@ public class NetClient {
 		return listResult;
 	}
 
-	public static Map<String, WebcamProperty> getWebcamProperties() {
-		String jsonInString = getRestFull(_REST_ENABLED_WEBCAMS_URL);
+	public static List<String> getWebcamIdList() {
+		String jsonInString = getRestFull(_REST_ENABLED_WEBCAMS_ID_URL);
 
 		ObjectMapper mapper = new ObjectMapper();
-		Map<String, WebcamProperty> mapResult = null;
+		List<String> mapResult = null;
 
 		// JSON from file to Object
 		try {
-			mapResult = mapper.readValue(jsonInString, new TypeReference<Map<String, WebcamProperty>>() {
+			mapResult = mapper.readValue(jsonInString, new TypeReference<List<String>>() {
 			});
 		} catch (JsonParseException e) {
 			e.printStackTrace();
-			mapResult = new HashMap<String, WebcamProperty>();
+			mapResult = new ArrayList<String>();
 		} catch (JsonMappingException e) {
 			e.printStackTrace();
-			mapResult = new HashMap<String, WebcamProperty>();
+			mapResult = new ArrayList<String>();
 		} catch (IOException e) {
 			e.printStackTrace();
-			mapResult = new HashMap<String, WebcamProperty>();
+			mapResult = new ArrayList<String>();
 		}
 
 		return mapResult;

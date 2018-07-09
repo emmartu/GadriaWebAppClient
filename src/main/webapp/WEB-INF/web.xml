@@ -3,8 +3,18 @@
   <display-name>GadriaWebappClient</display-name>
   
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>gadriaHome.html</welcome-file>
   </welcome-file-list>
+
+  <context-param>
+	<param-name>currentImageDir</param-name>
+	<param-value>/latest_picture</param-value>
+  </context-param>
+
+  <context-param>
+	<param-name>gadriaMonitoringUrl</param-name> 
+	<param-value>localhost:8001</param-value> 
+  </context-param>
 
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
@@ -39,16 +49,6 @@
     <servlet-name>mvc-dispatcher</servlet-name>
     <url-pattern>*.html</url-pattern>
   </servlet-mapping>
-
-  <context-param>
-	<param-name>currentImageDir</param-name>
-	<param-value>/WEB-INF/img/latest_picture</param-value>
-  </context-param>
-
-  <context-param> 
-	<param-name>gadriaMonitoringUrl</param-name> 
-	<param-value>localhost:8001</param-value> 
-  </context-param> 
 
   <listener>
 	<listener-class>it.mountaineering.gadria.client.main.GadriaWebAppClientMain</listener-class>

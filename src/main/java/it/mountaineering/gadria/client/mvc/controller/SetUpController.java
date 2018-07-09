@@ -1,8 +1,6 @@
 package it.mountaineering.gadria.client.mvc.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
@@ -12,10 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import it.mountaineering.gadria.client.mvc.model.WebcamModel;
 import it.mountaineering.gadria.client.util.NetClient;
-import it.mountaineering.gadria.ring.memory.bean.WebcamProperty;
+import it.mountaineering.gadria.client.util.PropertiesManager;
 
 
 @Controller
@@ -26,60 +25,88 @@ public class SetUpController {
 	@RequestMapping(value = "/gadriaHome", method = RequestMethod.GET)
 	public String gadriaHomeGet(HttpSession session, ModelMap model) {
 		sessionSetup(session);
-		modelSetup(model);
-
-		return "gadriaHome";
+		String result = "";
+		
+		if(!checkInstallation()) {
+			result = "installationUnavailable";
+		}else {
+			modelSetup(model);
+			result = "installationUnavailable";
+		}
+		
+		return result;
 	}
 
 	@RequestMapping(value = "/gadriaHome", method = RequestMethod.POST)
 	public String gadriaHomePost(HttpSession session, ModelMap model) {
 		sessionSetup(session);
-		modelSetup(model);
-
-		return "gadriaHome";
+		String result = "";
+		
+		if(!checkInstallation()) {
+			result = "installationUnavailable";
+		}else {
+			modelSetup(model);
+			result = "gadriaHome";
+		}
+		
+		return result;
 	}
+
+	@RequestMapping(value = "/checkInstallation", method = RequestMethod.GET)
+	public String checkInstallationGet(HttpSession session, ModelMap model) {
+		sessionSetup(session);
+
+		String result = "";
+		
+		if(!checkInstallation()) {
+			result = "installationUnavailable";
+		}else {
+			modelSetup(model);
+			result = "gadriaHome";
+		}
+		
+		return result;
+	}
+
+	@RequestMapping(value = "/checkInstallation", method = RequestMethod.POST)
+	public String checkInstallationPost(HttpSession session, ModelMap model) {
+		sessionSetup(session);
+
+		String result = "";
+		
+		if(!checkInstallation()) {
+			result = "installationUnavailable";
+		}else {
+			modelSetup(model);
+			result = "gadriaHome";
+		}
+		
+		return result;
+	}
+
 
 	@RequestMapping(value = "/latest/{webcamId}/viewImage", method = RequestMethod.GET)
-	public String latestPictureGet(HttpSession session, ModelMap model, @PathVariable("webcamId") String webcamId) {
+	public String latestPictureGet(HttpSession session, ModelMap model, @PathVariable("webcamId") String webcamId) {				
+		sessionSetup(session);
+
+		ModelAndView mAndView = null;
+		if(!checkInstallation()) {
+			mAndView = new ModelAndView("installationUnavailable", null, null);
+		}else {
+			modelSetup(model);
+			mAndView = new ModelAndView("gadriaHome", null, null);
+		}
 		
 		
-		sessionSetup(session);
-		modelSetup(model);
-
-		return "gadriaHome";
-	}
-
-	@RequestMapping(value = "/latestPicture/{webcamId}", method = RequestMethod.POST)
-	public String latestPicturePost(HttpSession session, ModelMap model) {
-		sessionSetup(session);
-		modelSetup(model);
-
-		return "gadriaHome";
+		return "//latest//"+webcamId+"//viewImage";
 	}
 
 
-	@RequestMapping(value = "/demoSettingsPage", method = RequestMethod.GET)
-	public String demoSettingsPageGet(HttpSession session, ModelMap model) {
-		sessionSetup(session);
-		modelSetup(model);
-
-		return "demoSettingsPage";
-	}
-
-	@RequestMapping(value = "/demoSettingsPage", method = RequestMethod.POST)
-	public String demoSettingsPagePost(HttpSession session, ModelMap model) {
-		sessionSetup(session);
-		modelSetup(model);
-
-		return "demoSettingsPage";
-	}
 
 	private WebcamModel getWebcamModel() {
-		Map<String, WebcamProperty> webcamPropertiesMap = NetClient.getWebcamProperties();
+		List<String> webcamIdList = NetClient.getWebcamIdLIst();
 		WebcamModel webcamModel = new WebcamModel();
 		
-		List<String> webcamIdList = new ArrayList<String>();
-		webcamIdList.addAll(webcamPropertiesMap.keySet());
 		webcamModel.setWebcamIdList(webcamIdList);
 		
 		return webcamModel;
@@ -92,9 +119,20 @@ public class SetUpController {
 		}
 	}
 
+	private boolean checkInstallation() {
+		String clientImagePath = PropertiesManager.getClientImagePath();
+		String serverInstallationHost = PropertiesManager.getServerInstallationHost();
+
+		if((clientImagePath==null || clientImagePath =="") && (serverInstallationHost==null || serverInstallationHost=="")) {
+			return false;
+		}
+		
+		return true;
+	}
+
 	private void sessionSetup(HttpSession session) {
 		
-		if (session.getAttribute("loadAtlanteDataDone") == null)
-			session.setAttribute("loadAtlanteDataDone", false);
+		if (session.getAttribute("installationSetupDone") == null)
+			session.setAttribute("installationSetupDone", false);
 	}
 }

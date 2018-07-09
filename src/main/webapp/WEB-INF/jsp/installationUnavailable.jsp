@@ -43,7 +43,6 @@
 	          	<c:forEach items="${webcamModel.webcamIdList}" var="webcamId" varStatus="index">
 		            <li><a href="/latest/${webcamId}/viewImage.html">${webcamId}</a></li>
 				</c:forEach>
-
 	          </ul>
 	        </li>
 	      </ul>
@@ -53,6 +52,12 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
+
+	<div class="container">
+      <div class="jumbotron">
+		<img src="/GadriaWebAppClient/img/LAVORI-IN-CORSO-omini.jpg" height="50%" width="50%" alt="coming soon"/>
+	  </div>
+    </div>
 
   </body>
 </html>

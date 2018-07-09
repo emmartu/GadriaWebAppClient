@@ -14,13 +14,13 @@
 
 	<dependencies>
 
-		<dependency>
+		<!-- dependency>
 			<groupId>it.mountaineering.gadria</groupId>
 			<artifactId>GadriaMonitoring</artifactId>
 			<version>2.0</version>
 		    <scope>system</scope>
 		    <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/GadriaMonitoring.jar</systemPath>
-		</dependency>
+		</dependency -->
 
 		<dependency>
 			<groupId>junit</groupId>

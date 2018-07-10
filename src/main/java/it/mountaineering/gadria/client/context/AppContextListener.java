@@ -11,13 +11,13 @@ import org.springframework.context.event.ContextClosedEvent;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 
-public class AppContextListener implements ApplicationListener<ApplicationEvent>, ApplicationContextAware {
+public class AppContextListener { //implements ApplicationListener<ApplicationEvent>, ApplicationContextAware {
 	private static final java.util.logging.Logger log = Logger.getLogger(AppContextListener.class.getName());
 	
 	private ApplicationContext applicationContext = null;
 	private boolean started = false;
 	
-	@Override
+	//@Override
 	public void setApplicationContext(ApplicationContext context) throws BeansException {
 		this.applicationContext = context;
 	}
@@ -28,7 +28,7 @@ public class AppContextListener implements ApplicationListener<ApplicationEvent>
     //}
 
     
-    @Override
+    //@Override
 	public void onApplicationEvent(ApplicationEvent event) {
 		if(event instanceof ContextRefreshedEvent) {
 			if(!started) {

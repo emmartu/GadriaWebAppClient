@@ -48,7 +48,7 @@
 	        </li>
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
-            <li><a href="/areaRiservata">Area Riservata</a></li>
+	      	<li><a href="areaRiservata.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
           </ul>
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
